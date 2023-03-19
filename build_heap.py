@@ -4,12 +4,14 @@ def build_heap(data):
     # try to achieve O(n) and not O(n^2)
     n = len(data)
     
+    
     for i in range(n//2, -1, -1):
         siftdown(i, n, data, swaps)
 
     return swaps
 
-
+    
+    
 def siftdown(i, n, data, swaps):
     while True:
         minind = i
@@ -17,6 +19,7 @@ def siftdown(i, n, data, swaps):
         if y < n and data[y] < data[minind]:
             minind = y
         z = 2*i + 2
+        
         
         if z < n and data[z] < data[minind]:
             minind = z
@@ -28,6 +31,7 @@ def siftdown(i, n, data, swaps):
         else:
             break
 
+            
 
 def main():
     try:
@@ -43,6 +47,7 @@ def main():
                 
         # checks if length of data is the same as the said length
         assert len(data) == n 
+        
 
         # calls function to assess the data 
         # and give back all swaps
@@ -52,11 +57,14 @@ def main():
         print(len(swaps))
         for i, j in swaps:
             print(i, j)
+            
+            
 
     except Exception as e:
         print("Error")
         return
 
+    
 
 if __name__ == "__main__":
     main()
