@@ -1,30 +1,25 @@
-# python3
-
-
 def build_heap(data):
     swaps = []
-    # TODO: Creat heap and heap sort
-    # try to achieve  O(n) and not O(n2)
+    # TODO: Create heap and heap sort
+    # try to achieve O(n) and not O(n^2)
     n = len(data)
-    for i in range(x//2, -1, -1):
+    for i in range(n//2, -1, -1):
         siftdown(i, n, data, swaps)
 
     return swaps
-def siftdown(x, n, data, swaps):
+
+def siftdown(i, n, data, swaps):
     minind = i
-    y = 2*i +1
-    if y<x and data[y] < data[minind]:
+    y = 2*i + 1
+    if y < n and data[y] < data[minind]:
         minind = y
-    z = 2*i +2
-    if z< n and data[y] < data[minind]:
+    z = 2*i + 2
+    if z < n and data[z] < data[minind]:
         minind = z
     if i != minind:
         data[i], data[minind] = data[minind], data[i]
         swaps.append((i, minind))
-        siftdown(minind, data, swaps)
-        
-        
-    
+        siftdown(minind, n, data, swaps)
 
 def main():
     try:
@@ -57,7 +52,5 @@ def main():
         print("Error")
         return
 
-
 if __name__ == "__main__":
     main()
-
