@@ -5,22 +5,44 @@ def build_heap(data):
     swaps = []
     # TODO: Creat heap and heap sort
     # try to achieve  O(n) and not O(n2)
-
+    x = len(data)
+    for i in range(x//2, -1, -1):
+        sift_down(i, data, swaps)
 
     return swaps
-
+def sift_down(i, data, swaps):
+    x = len(data)
+    minind = i
+    y = 2*i +1
+    if y<x and data[y] < data[minind]:
+        minind = y
+    z = 2*i +2
+    if z< x and data[y] < data[minind]:
+        minind = z
+    if i != minind:
+        data[i], data[minind] = data[minind], data[i]
+        swaps.append((i, minind))
+        sift_down(minind, data, swaps)
+        
+        
+    
 
 def main():
     
     # TODO : add input and corresponding checks
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
-
-
-    # input from keyboard
-    n = int(input())
-    data = list(map(int, input().split()))
-
+    try:
+        userinput = input("Input I for keyboard input or F for file input -> ")
+        if userinput.startswith('I'):
+            n = int(input(""))
+            data = list(map(int, input().split()))
+        elif userinput.startswith('F'):
+            file = "tests/"+ input("Input file name -> ")
+            with open(file, 'r') as f:
+                n = int(f.readline())
+                data = list(map(int, f.readline().split()))
+                
     # checks if lenght of data is the same as the said lenght
     assert len(data) == n
 
@@ -36,6 +58,9 @@ def main():
     print(len(swaps))
     for i, j in swaps:
         print(i, j)
+except exception as e:
+    print(f"Error")
+    return
 
 
 if __name__ == "__main__":
